@@ -14,15 +14,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Updated to v3
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3  # Updated to v3
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Specify the Node.js version you want to use
+          node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-optional  # Use --no-optional to skip optional dependencies
 
       - name: Run tests
         run: npm test
