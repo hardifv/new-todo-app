@@ -21,8 +21,11 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Clear npm cache
+        run: npm cache clean --force  # Clear npm cache
+
       - name: Install dependencies
-        run: npm install --no-optional  # Use --no-optional to skip optional dependencies
+        run: npm install --omit=optional  # Use --omit=optional to skip optional dependencies
 
       - name: Run tests
         run: npm test
