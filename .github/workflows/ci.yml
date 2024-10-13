@@ -1,34 +1,28 @@
-name: CI Pipeline  # Name of the workflow
+name: CI
 
-# When this workflow runs:
 on:
   push:
-    branches:
-      - main  # Runs the workflow when code is pushed to the 'main' branch
+    branches: 
+      - main
   pull_request:
     branches:
-      - main  # Runs the workflow when a pull request is made to 'main' branch
+      - main
 
-# The jobs to run in the pipeline
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest version of Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code from the repository
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Updated to v3
 
-      # Step 2: Set up the environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3  # Updated to v3
         with:
-          node-version: '14'
+          node-version: '20'  # Specify the Node.js version you want to use
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run tests (replace 'npm test' with your actual test command if different)
       - name: Run tests
         run: npm test
