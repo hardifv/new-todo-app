@@ -1,11 +1,22 @@
 const express = require('express');
+const bodyParser = require('body-parser'); // Import body-parser
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the To-Do App!');
+// Use body-parser middleware
+app.use(bodyParser.json());
+
+app.post('/add-task', (req, res) => {
+  const { task } = req.body; // Make sure this is defined
+  if (task) {
+    res.send(`Task ${task} added`);
+  } else {
+    res.status(400).send('Task is required');
+  }
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = { app, server }; // Export app and server

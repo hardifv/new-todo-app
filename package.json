@@ -11,9 +11,10 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "jest": "^27.0.0"
+    "jest": "^27.0.0",
+    "supertest": "^7.0.0"
   },
   "optionalDependencies": {
-    "fsevents": "^2.3.3"  
+    "fsevents": "^2.3.3"
   }
 }

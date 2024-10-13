@@ -1,5 +1,16 @@
-const addTask = require('../index');
+const request = require('supertest');
+const { app, server } = require('../index');  // Adjust path to point to index.js
 
-test('adds a task', () => {
-  expect(addTask('Test Task')).toBe('Task Test Task added');
+describe('To-Do App', () => {
+  afterAll(() => {
+    server.close();  // Close the server after tests
+  });
+
+  test('adds a task', async () => {
+    const response = await request(app)
+      .post('/add-task')
+      .send({ task: 'Test Task' });
+
+    expect(response.text).toBe('Task Test Task added');
+  });
 });
